@@ -22,5 +22,5 @@ module.exports = {
         },
     },
     "skipInterpolation": "frameworks/**/*.vue",
-    "completeMessage": "To get started:\n\n  {{^inPlace}}cd {{destDirName}}\n  {{/inPlace}}npm install\n  npm run dev\n\nDocumentation can be found at https://vuejs-templates.github.io/webpack"
+    "completeMessage": "开始你的项目吧！\n文档：https://github.com/igauch/hVueStart"
 };
