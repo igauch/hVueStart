@@ -1,7 +1,45 @@
-# 公司内部VUE构建模板
-# 感谢VUE
-## 使用
-### 准备
+# 自定义的VUE项目模板
+> 感谢`VUE`提供的生态    
+> 感谢`elemefe` `bootstrap`等一众优秀的开源库
+
+# WHAT  
+`vue-cli`官方提供的模板较为简单，基于一些实践，这里提供了   
+* 
+
+# 贡献相关  
+## 原则   
+* 
+
+# 使用
+推荐使用[yarn](https://yarnpkg.com/zh-Hans/)作为包管理工具，这里主要的原因是快速（安装过的依赖就不再安装，npm不会）   
+请确保你已经具备ruby环境，如果没有，在Windows也很简单    
+> 1. [下载](https://rubyinstaller.org/downloads/)安装文件 
+> 2. 不要无脑安装，请确保勾选了 `add ruby executables to your path` 这个选项，避免以后的环境配置   
+> 3. 安装最后`run 'risk install' to install MSYS2`这样的选项并不必须，随意  
+> 4. [国内镜像](http://gems.ruby-china.org/)
+
+* 安装依赖  
+```
+yarn || npm i
+```   
+* 启动`element`服务     
+```
+npm run el-dev
+```
+* 启动`bootstrap`服务     
+```
+npm run bs-dev
+``` 
+* 将修改过的`element`和`bootstrap`push到模板 
+```
+npm run pushTpl
+``` 
+* 初始化一个模板实例项目DEMO并运行    
+```
+npm run tplDemo
+```
+
+## 准备
 这是基于vue-cli的VUE项目构建工具，所以请确保已经安装了vue-cli，最好是全局安装，如果没有，请在命令行工具里键入：
 ```
 npm i -g vue-cli

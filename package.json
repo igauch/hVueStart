@@ -6,7 +6,7 @@
   "scripts": {
     "bs-bootstrap": "cd bootstrap && yarn || npm i",
     "el-dev": "cd element && npm run dev && explorer 'http://localhost:8085/#/zh-CN/component/installation' && exit 1",
-    "bs-dev": "npm run bs-bootstrap && cd bootstrap && bundle install && npm run docs-serve && explorer 'http://localhost:9001/docs/4.0/components/buttons/' && exit 1",
+    "bs-dev": "npm run bs-bootstrap && cd bootstrap && gem install bundler && bundle install && npm run docs-serve && explorer 'http://localhost:9001/docs/4.0/components/buttons/' && exit 1",
     "dev": "npm i && npm run el-dev && npm run bs-dev",
     "pushTpl": "node build/pushTpl.js",
     "tplDemo": "npm run pushTpl && vue init ./ demo",
