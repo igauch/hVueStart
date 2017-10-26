@@ -14,7 +14,7 @@
 推荐使用[yarn](https://yarnpkg.com/zh-Hans/)作为包管理工具，这里主要的原因是快速（安装过的依赖就不再安装，npm不会）   
 请确保你已经具备ruby环境，如果没有，在Windows也很简单    
 > 1. [下载](https://rubyinstaller.org/downloads/)安装文件 
-> 2. 不要无脑安装，请确保勾选了 `add ruby executables to your path` 这个选项，避免以后的环境配置   
+> 2. 不要无脑安装，请确保勾选了 `add ruby executables to your path`和 `utf-8` 这个选项，避免以后的环境配置   
 > 3. 安装最后`run 'risk install' to install MSYS2`这样的选项并不必须，随意  
 > 4. [国内镜像](http://gems.ruby-china.org/)
 
