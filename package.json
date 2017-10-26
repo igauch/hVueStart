@@ -9,11 +9,13 @@
     "bs-dev": "npm run bs-bootstrap && cd bootstrap && bundle install && npm run docs-serve && explorer 'http://localhost:9001/docs/4.0/components/buttons/' && exit 1",
     "dev": "npm i && npm run el-dev && npm run bs-dev",
     "pushTpl": "node build/pushTpl.js",
+    "tplDemo": "npm run pushTpl && vue init ./ demo",
+    "tp-bootstrap": "cd template && yarn || npm i",
+    "tp-dev": "npm run tp-bootstrap && cd template && npm run dev",
     "t": "node build/dev-server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
-    "copy-dir": "^0.3.0",
     "fs-extra": "^4.0.2",
     "lerna": "^2.4.0",
     "opn": "^5.1.0",
