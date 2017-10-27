@@ -7,10 +7,13 @@ import {router} from './router.index'
 import axios from 'axios'
 import ElementUI from 'element-ui/src/index.js'
 import 'element-ui/packages/theme-chalk/src/index.scss'
+import components from '../frameworks/components/index.js'
 
 Vue.prototype.$http = axios
 
 Vue.use(ElementUI)
+Vue.use(components)
+
 /**
  * @type {boolean}
  * 设置为 false 以阻止 vue 在启动时生成生产提示
