@@ -23,20 +23,20 @@ module.exports = {
     },
     dev: {
         env: require('./dev.env'),
-        port: 8089,
+        port: {{ port }},
         autoOpenBrowser: true,
         assetsSubDirectory: 'static',
         assetsPublicPath: '/',
         proxyTable: {
             //修改代理
             // proxy all requests starting with /api to jsonplaceholder
-            '/resources': {
-                target: 'http://howsodev.igauch.cn:8081/deeplan.son.mro/',
-                changeOrigin: true,
-                pathRewrite: {
-                    '^/resources': ''
-                }
-            }
+            // '/resources': {
+            //     target: 'http://howsodev.igauch.cn:8081/deeplan.son.mro/',
+            //     changeOrigin: true,
+            //     pathRewrite: {
+            //         '^/resources': ''
+            //     }
+            // }
         },
         // CSS Sourcemaps off by default because relative paths are "buggy"
         // with this option, according to the CSS-Loader README

@@ -22,6 +22,12 @@ module.exports = {
       "message": "项目版本",
       "default": "1.0.0"
     },
+    "port": {
+      "type": "number",
+      "required": true,
+      "message": "端口号",
+      "default": "8089"
+    },
   },
   "skipInterpolation": "frameworks/**/*",
   complete(data) {
