@@ -10,7 +10,8 @@
 ## 原则   
 * 
 
-# 使用
+# 开发
+## 使用
 推荐使用[yarn](https://yarnpkg.com/zh-Hans/)作为包管理工具，这里主要的原因是快速（安装过的依赖就不再安装，npm不会）   
 请确保你已经具备ruby环境，如果没有，在Windows也很简单    
 > 1. [下载](https://rubyinstaller.org/downloads/)安装文件 
@@ -39,6 +40,7 @@ npm run pushTpl
 npm run tplDemo && npm run de-dev
 ```
 
+# 初始化vue项目
 ## 准备
 这是基于vue-cli的VUE项目构建工具，所以请确保已经安装了vue-cli，最好是全局安装，如果没有，请在命令行工具里键入：
 ```
@@ -54,7 +56,7 @@ n stable
 ```
 npm i -g npm
 ```
-### 开始
+## 开始
 ```$xslt
 vue init igauch/hVueStart 这里改成你想命名的文件夹名
 ```
@@ -65,8 +67,8 @@ vue init igauch/hVueStart 这里改成你想命名的文件夹名
 npm install
 npm run dev
 ```
-### 可能出现的异常
+## 可能出现的异常
 * node和npm版本见上面
 * python环境，因为公司的样式是基于sass编写的，而sass又依赖ruby，不对，好像哪里不对？ruby?python?好吧，我也不知道，而且这种情况目前只在win7下发现，如果发现有 ` Can't find Python`类似的字样，请下载并安装python2.7版本，环境变量配置在安装时有选项的
-### 具体的使用请看template下的[readme文件](https://github.com/igauch/hVueStart/blob/master/template/README.md)或初始化到本地的文件夹根目录下的readme文件
+## 具体的使用请看template下的[readme文件](https://github.com/igauch/hVueStart/blob/master/template/README.md)或初始化到本地的文件夹根目录下的readme文件
 ## [vue-cli文档](https://github.com/vuejs/vue-cli)
