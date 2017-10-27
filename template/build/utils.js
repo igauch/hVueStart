@@ -55,8 +55,8 @@ exports.cssLoaders = function (options) {
             loader: 'sass-resources-loader',
             options: {
               resources: [
-                path.resolve(__dirname,'../frameworks/basicStyle/scss/_functions.scss'),
-                path.resolve(__dirname,'../frameworks/basicStyle/scss/_mixins.scss'),
+                path.resolve(__dirname,'../frameworks/basicStyle/_functions.scss'),
+                path.resolve(__dirname,'../frameworks/basicStyle/_mixins.scss'),
                 path.resolve(__dirname,'../src/styles/scss/customBasicStyle.scss')]
             }
           }

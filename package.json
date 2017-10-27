@@ -10,6 +10,7 @@
     "dev": "npm i && npm run el-dev && npm run bs-dev",
     "pushTpl": "node build/pushTpl.js",
     "tplDemo": "npm run pushTpl && vue init ./ demo",
+    "de-dev": "npm run tplDemo && cd demo && npm run dev",
     "tp-bootstrap": "cd template && yarn || npm i",
     "tp-dev": "npm run tp-bootstrap && cd template && npm run dev",
     "t": "node build/dev-server.js",

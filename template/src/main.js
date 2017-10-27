@@ -6,7 +6,7 @@ import App from './App.vue'
 import {router} from './router.index'
 import axios from 'axios'
 import ElementUI from 'element-ui/src/index.js'
-import 'element-ui/lib/theme-default/index.css'
+import 'element-ui/packages/theme-chalk/src/index.scss'
 
 Vue.prototype.$http = axios
 

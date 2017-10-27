@@ -33,14 +33,16 @@ module.exports = {
           return;
         }
         console.log(`stdout: ${stdout}`);
-        console.log('项目依赖安装完成！准备运行项目');
-        exec(`cd ${data.destDirName} && npm run dev`,(error, stdout) => {
-            if (error) {
-                console.error(`exec error: ${error}`);
-                return;
-            }
-            console.log(`stdout: ${stdout}`);
-        });
+        console.log('项目依赖安装完成！开始你的项目吧');
+        //todo 不能捕获输出
+
+        // exec(`cd ${data.destDirName} && npm run dev`,(error, stdout) => {
+        //     if (error) {
+        //         console.error(`exec error: ${error}`);
+        //         return;
+        //     }
+        //     console.log(`stdout: ${stdout}`);
+        // });
       });
     }
   }
