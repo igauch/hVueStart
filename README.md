@@ -36,7 +36,7 @@ npm run pushTpl
 ``` 
 * 初始化一个模板实例项目DEMO并运行    
 ```
-npm run tplDemo
+npm run tplDemo && npm run de-dev
 ```
 
 ## 准备
