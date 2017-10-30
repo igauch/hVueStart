@@ -36,6 +36,7 @@
           <div class="el-message-box__input" v-show="showInput">
             <el-input
               v-model="inputValue"
+              :type="inputType"
               @compositionstart.native="handleComposition"
               @compositionupdate.native="handleComposition"
               @compositionend.native="handleComposition"
@@ -86,10 +87,10 @@
 
   let messageBox;
   let typeMap = {
-    success: 'circle-check',
-    info: 'information',
+    success: 'success',
+    info: 'info',
     warning: 'warning',
-    error: 'circle-cross'
+    error: 'error'
   };
 
   export default {
@@ -307,6 +308,7 @@
         showInput: false,
         inputValue: null,
         inputPlaceholder: '',
+        inputType: 'text',
         inputPattern: null,
         inputValidator: null,
         inputErrorMessage: '',

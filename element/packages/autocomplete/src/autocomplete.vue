@@ -51,7 +51,7 @@
         :aria-selected="highlightedIndex === index"
       >
         <slot :item="item">
-          {{ item[props.label] }}
+          {{ item[valueKey] }}
         </slot>
       </li>
     </el-autocomplete-suggestions>
@@ -65,11 +65,12 @@
   import Emitter from 'element-ui/src/mixins/emitter';
   import Migrating from 'element-ui/src/mixins/migrating';
   import { generateId } from 'element-ui/src/utils/util';
+  import Focus from 'element-ui/src/mixins/focus';
 
   export default {
     name: 'ElAutocomplete',
 
-    mixins: [Emitter, Migrating],
+    mixins: [Emitter, Focus('input'), Migrating],
 
     componentName: 'ElAutocomplete',
 
@@ -81,14 +82,9 @@
     directives: { Clickoutside },
 
     props: {
-      props: {
-        type: Object,
-        default() {
-          return {
-            label: 'value',
-            value: 'value'
-          };
-        }
+      valueKey: {
+        type: String,
+        default: 'value'
       },
       popperClass: String,
       placeholder: String,
@@ -141,7 +137,8 @@
       getMigratingConfig() {
         return {
           props: {
-            'custom-item': 'custom-item is removed, use scoped slot intstead.'
+            'custom-item': 'custom-item is removed, use scoped slot instead.',
+            'props': 'props is removed, use value-key instead.'
           }
         };
       },
@@ -198,7 +195,7 @@
         }
       },
       select(item) {
-        this.$emit('input', item[this.props.label]);
+        this.$emit('input', item[this.valueKey]);
         this.$emit('select', item);
         this.$nextTick(_ => {
           this.suggestions = [];

@@ -70,12 +70,29 @@
           field.resetField();
         });
       },
+      clearValidate() {
+        this.fields.forEach(field => {
+          field.clearValidate();
+        });
+      },
       validate(callback) {
         if (!this.model) {
           console.warn('[Element Warn][Form]model is required for validate to work!');
           return;
         }
+
+        let promise;
+        // if no callback, return promise
+        if (typeof callback !== 'function' && window.Promise) {
+          promise = new window.Promise((resolve, reject) => {
+            callback = function(valid) {
+              valid ? resolve(valid) : reject(valid);
+            };
+          });
+        }
+
         let valid = true;
+        let count = 0;
         // 如果需要验证的fields为空，调用验证时立刻返回callback
         if (this.fields.length === 0 && callback) {
           callback(true);
@@ -85,13 +102,14 @@
             if (errors) {
               valid = false;
             }
+            if (typeof callback === 'function' && ++count === this.fields.length) {
+              callback(valid);
+            }
           });
         });
 
-        if (typeof callback === 'function') {
-          callback(valid);
-        } else if (window.Promise) {
-          return Promise[valid ? 'resolve' : 'reject'](valid); // eslint-disable-line
+        if (promise) {
+          return promise;
         }
       },
       validateField(prop, cb) {

@@ -89,19 +89,19 @@
                 @click="leftPrevMonth"
                 class="el-picker-panel__icon-btn el-icon-arrow-left"></button>
               <button
-                  type="button"
-                  @click="leftNextYear"
-                  v-if="unlinkPanels"
-                  :disabled="!enableYearArrow"
-                  :class="{ 'is-disabled': !enableYearArrow }"
-                  class="el-picker-panel__icon-btn el-icon-d-arrow-right"></button>
+                type="button"
+                @click="leftNextYear"
+                v-if="unlinkPanels"
+                :disabled="!enableYearArrow"
+                :class="{ 'is-disabled': !enableYearArrow }"
+                class="el-picker-panel__icon-btn el-icon-d-arrow-right"></button>
               <button
-                  type="button"
-                  @click="leftNextMonth"
-                  v-if="unlinkPanels"
-                  :disabled="!enableMonthArrow"
-                  :class="{ 'is-disabled': !enableMonthArrow }"
-                  class="el-picker-panel__icon-btn el-icon-arrow-right"></button>
+                type="button"
+                @click="leftNextMonth"
+                v-if="unlinkPanels"
+                :disabled="!enableMonthArrow"
+                :class="{ 'is-disabled': !enableMonthArrow }"
+                class="el-picker-panel__icon-btn el-icon-arrow-right"></button>
               <div>{{ leftLabel }}</div>
             </div>
             <date-table
@@ -120,19 +120,19 @@
           <div class="el-picker-panel__content el-date-range-picker__content is-right">
             <div class="el-date-range-picker__header">
               <button
-                  type="button"
-                  @click="rightPrevYear"
-                  v-if="unlinkPanels"
-                  :disabled="!enableYearArrow"
-                  :class="{ 'is-disabled': !enableYearArrow }"
-                  class="el-picker-panel__icon-btn el-icon-d-arrow-left"></button>
+                type="button"
+                @click="rightPrevYear"
+                v-if="unlinkPanels"
+                :disabled="!enableYearArrow"
+                :class="{ 'is-disabled': !enableYearArrow }"
+                class="el-picker-panel__icon-btn el-icon-d-arrow-left"></button>
               <button
-                  type="button"
-                  @click="rightPrevMonth"
-                  v-if="unlinkPanels"
-                  :disabled="!enableMonthArrow"
-                  :class="{ 'is-disabled': !enableMonthArrow }"
-                  class="el-picker-panel__icon-btn el-icon-arrow-left"></button>
+                type="button"
+                @click="rightPrevMonth"
+                v-if="unlinkPanels"
+                :disabled="!enableMonthArrow"
+                :class="{ 'is-disabled': !enableMonthArrow }"
+                class="el-picker-panel__icon-btn el-icon-arrow-left"></button>
               <button
                 type="button"
                 @click="rightNextYear"
@@ -193,6 +193,7 @@
   import TimePicker from './time';
   import DateTable from '../basic/date-table';
   import ElInput from 'element-ui/packages/input';
+  import ElButton from 'element-ui/packages/button';
 
   const advanceDate = (date, amount) => {
     return new Date(new Date(date).getTime() + amount);
@@ -204,7 +205,7 @@
     } else if (defaultValue) {
       return [new Date(defaultValue), advanceDate(defaultValue, 24 * 60 * 60 * 1000)];
     } else {
-      return [new Date(), advanceDate(Date.now, 24 * 60 * 60 * 1000)];
+      return [new Date(), advanceDate(Date.now(), 24 * 60 * 60 * 1000)];
     }
   };
 
@@ -335,7 +336,6 @@
         if (val && this.$refs.minTimePicker) {
           this.$refs.minTimePicker.date = val;
           this.$refs.minTimePicker.value = val;
-          this.$refs.minTimePicker.adjustSpinners();
         }
       },
 
@@ -343,7 +343,6 @@
         if (val && this.$refs.maxTimePicker) {
           this.$refs.maxTimePicker.date = val;
           this.$refs.maxTimePicker.value = val;
-          this.$refs.maxTimePicker.adjustSpinners();
         }
       },
 
@@ -378,7 +377,9 @@
           //       should allow them to be set individually in the future
           if (this.minDate) {
             this.leftDate = this.minDate;
-            this.rightDate = nextMonth(this.leftDate);
+            this.rightDate = this.unlinkPanels && this.maxDate
+              ? this.maxDate
+              : nextMonth(this.leftDate);
           } else {
             this.leftDate = calcDefaultValue(this.defaultValue)[0];
             this.rightDate = nextMonth(this.leftDate);
@@ -388,8 +389,11 @@
 
       defaultValue(val) {
         if (!Array.isArray(this.value)) {
-          this.leftDate = calcDefaultValue(val)[0];
-          this.rightDate = nextMonth(this.leftDate);
+          const [left, right] = calcDefaultValue(val);
+          this.leftDate = left;
+          this.rightDate = val && val[1] && this.unlinkPanels
+            ? right
+            : nextMonth(this.leftDate);
         }
       }
     },
@@ -400,7 +404,7 @@
         this.maxDate = null;
         this.leftDate = calcDefaultValue(this.defaultValue)[0];
         this.rightDate = nextMonth(this.leftDate);
-        this.handleConfirm(false);
+        this.$emit('pick', null);
       },
 
       handleChangeRange(val) {
@@ -478,6 +482,12 @@
         this.onPick && this.onPick(val);
         this.maxDate = val.maxDate;
         this.minDate = val.minDate;
+
+        // workaround for https://github.com/ElemeFE/element/issues/7539, should remove this block when we don't have to care about Chromium 55 - 57
+        setTimeout(() => {
+          this.maxDate = val.maxDate;
+          this.minDate = val.minDate;
+        }, 10);
         if (!close || this.showTime) return;
         this.handleConfirm();
       },
@@ -581,6 +591,6 @@
       }
     },
 
-    components: { TimePicker, DateTable, ElInput }
+    components: { TimePicker, DateTable, ElInput, ElButton }
   };
 </script>

@@ -38,7 +38,10 @@
         </i>
       </span>
       <!-- 后置内容 -->
-      <span class="el-input__suffix" v-if="$slots.suffix || suffixIcon || validateState" :style="suffixOffset">
+      <span
+        class="el-input__suffix"
+        v-if="$slots.suffix || suffixIcon || validateState && needStatusIcon"
+        :style="suffixOffset">
         <span class="el-input__suffix-inner">
           <slot name="suffix"></slot>
           <i class="el-input__icon"
@@ -66,7 +69,7 @@
       :style="textareaStyle"
       @focus="handleFocus"
       @blur="handleBlur"
-      @change="handleChange">
+      @change="handleChange"
       :aria-label="label"
     >
     </textarea>
@@ -87,6 +90,9 @@
     mixins: [emitter, Focus('input'), Migrating],
 
     inject: {
+      elForm: {
+        default: ''
+      },
       elFormItem: {
         default: ''
       }
@@ -106,15 +112,18 @@
       placeholder: String,
       size: String,
       resize: String,
+      name: String,
+      form: String,
+      id: String,
+      maxlength: Number,
+      minlength: Number,
       readonly: Boolean,
       autofocus: Boolean,
-      icon: String,
       disabled: Boolean,
       type: {
         type: String,
         default: 'text'
       },
-      name: String,
       autosize: {
         type: [Boolean, Object],
         default: false
@@ -127,9 +136,6 @@
         type: String,
         default: 'off'
       },
-      form: String,
-      maxlength: Number,
-      minlength: Number,
       max: {},
       min: {},
       step: {},
@@ -137,7 +143,6 @@
         type: Boolean,
         default: true
       },
-      onIconClick: Function,
       suffixIcon: String,
       prefixIcon: String,
       label: String
@@ -150,11 +155,14 @@
       validateState() {
         return this.elFormItem ? this.elFormItem.validateState : '';
       },
+      needStatusIcon() {
+        return this.elForm ? this.elForm.statusIcon : false;
+      },
       validateIcon() {
         return {
           validating: 'el-icon-loading',
           success: 'el-icon-circle-check',
-          error: 'el-icon-circle-cross'
+          error: 'el-icon-circle-close'
         }[this.validateState];
       },
       textareaStyle() {

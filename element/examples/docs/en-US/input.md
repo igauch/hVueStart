@@ -101,6 +101,9 @@
       display: inline-block;
       width: 130px;
     }
+    .input-with-select .el-input-group__prepend {
+      background-color: #fff;
+    }
     .demo-autocomplete {
       text-align: center;
 
@@ -318,7 +321,7 @@ Prepend or append an element, generally a label or a button.
   </el-input>
 </div>
 <div style="margin-top: 15px;">
-  <el-input placeholder="Please input" v-model="input5">
+  <el-input placeholder="Please input" v-model="input5" class="input-with-select">
     <el-select v-model="select" slot="prepend" placeholder="Select">
       <el-option label="Restaurant" value="1"></el-option>
       <el-option label="Order No." value="2"></el-option>
@@ -331,6 +334,9 @@ Prepend or append an element, generally a label or a button.
 <style>
   .el-select .el-input {
     width: 110px;
+  }
+  .input-with-select .el-input-group__prepend {
+    background-color: #fff;
   }
 </style>
 <script>
@@ -657,7 +663,7 @@ Attribute | Description | Type | Options | Default
 |----| ----| ----| ---- | -----|
 |placeholder| the placeholder of Autocomplete| string | — | — |
 |disabled | whether Autocomplete is disabled  | boolean | — | false|
-| props | configuration options, see the following table | object | — | — |
+| valueKey | key name of the input suggestion object for display | string | — | value |
 |icon | icon name | string | — | — |
 |value | binding value | string | — | — |
 | debounce | debounce delay when typing, in milliseconds | number | — | 300 |
@@ -668,12 +674,6 @@ Attribute | Description | Type | Options | Default
 | name | same as `name` in native input | string | — | — |
 | select-when-unmatched | whether to emit a `select` event on enter when there is no autocomplete match | boolean | — | false |
 | label | label text | string | — | — |
-
-### props
-| Attribute | Description | Type | Accepted Values | Default |
-| --------- | ----------------- | ------ | ------ | ------ |
-| label     | specify which key of option object is used as the option's label | string | — | value |
-| value     | specify which key of option object is used as the option's value | string | — | value |
 
 ### Autocomplete slots
 

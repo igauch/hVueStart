@@ -132,6 +132,9 @@
         margin: 0 10px 10px 0;
       }
     }
+    .input-with-select .el-input-group__prepend {
+      background-color: #fff;
+    }
     .demo-autocomplete {
       text-align: center;
 
@@ -344,7 +347,7 @@ export default {
   </el-input>
 </div>
 <div style="margin-top: 15px;">
-  <el-input placeholder="请输入内容" v-model="input5">
+  <el-input placeholder="请输入内容" v-model="input5" class="input-with-select">
     <el-select v-model="select" slot="prepend" placeholder="请选择">
       <el-option label="餐厅名" value="1"></el-option>
       <el-option label="订单号" value="2"></el-option>
@@ -356,6 +359,9 @@ export default {
 <style>
   .el-select .el-input {
     width: 130px;
+  }
+  .input-with-select .el-input-group__prepend {
+    background-color: #fff;
   }
 </style>
 <script>
@@ -816,7 +822,7 @@ export default {
 |-------------  |---------------- |---------------- |---------------------- |-------- |
 | placeholder   | 输入框占位文本   | string          | — | — |
 | disabled      | 禁用            | boolean         | — | false   |
-| props | 配置选项，具体见下表 | object | — | — |
+| valueKey | 输入建议对象中用于显示的键名 | string | — | value |
 | value         | 必填值，输入绑定值   | string  | — | — |
 | debounce      | 获取输入建议的去抖延时 | number         | — | 300 |
 | fetch-suggestions | 返回输入建议的方法，仅当你的输入建议数据 resolve 时，通过调用 callback(data:[]) 来返回它  | Function(queryString, callback)  | — | — |
@@ -825,12 +831,6 @@ export default {
 | name | 原生属性 | string | — | — |
 | select-when-unmatched | 在输入没有任何匹配建议的情况下，按下回车是否触发 `select` 事件 | boolean | — | false |
 | label | 输入框关联的label文字 | string | — | — |
-
-### props
-| 参数     | 说明              | 类型   | 可选值 | 默认值 |
-| -------- | ----------------- | ------ | ------ | ------ |
-| value    | 指定选项的值为选项对象的某个属性值 | string | — | value |
-| label    | 指定选项标签为选项对象的某个属性值 | string | — | value |
 
 ### Autocomplete slots
 | name | 说明 |

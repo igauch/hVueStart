@@ -1,6 +1,6 @@
 {
   "name": "element-ui",
-  "version": "2.0.0-beta.1",
+  "version": "2.0.1",
   "description": "A Component Library for Vue.js.",
   "main": "lib/element-ui.common.js",
   "files": [
@@ -25,14 +25,14 @@
     "dist:all": "node build/bin/build-all.js && npm run build:theme",
     "i18n": "node build/bin/i18n.js",
     "lint": "eslint src/**/* test/**/* packages/**/*.{js,vue} build/**/* --quiet",
-    "pub": "npm run bootstrap && sh build/git-release.sh && sh build/release.sh",
+    "pub": "npm run bootstrap && sh build/git-release.sh && sh build/release.sh && node build/bin/gen-indices.js && sh build/deploy-faas.sh",
     "pub:all": "npm run dist:all && lerna publish --skip-git && git commit -am 'publish independent packages' && git push eleme dev",
     "test": "npm run lint && npm run build:theme && cross-env CI_ENV=/dev/ karma start test/unit/karma.conf.js --single-run",
     "test:watch": "npm run build:theme && karma start test/unit/karma.conf.js"
   },
   "faas": {
     "domain": "element",
-    "public": "examples/element-ui"
+    "public": "temp_web/element"
   },
   "repository": {
     "type": "git",
@@ -57,7 +57,7 @@
     "throttle-debounce": "^1.0.1"
   },
   "peerDependencies": {
-    "vue": "^2.3.0"
+    "vue": "^2.5.2"
   },
   "devDependencies": {
     "algoliasearch": "^3.24.5",
@@ -113,6 +113,7 @@
     "markdown-it-container": "^2.0.0",
     "mocha": "^3.1.1",
     "node-sass": "^4.5.3",
+    "perspective.js": "^1.0.0",
     "postcss": "^5.1.2",
     "postcss-loader": "0.11.1",
     "postcss-salad": "^1.0.8",
@@ -121,7 +122,6 @@
     "sinon": "^1.17.6",
     "sinon-chai": "^2.8.0",
     "style-loader": "^0.19.0",
-    "theaterjs": "^3.0.0",
     "transliteration": "^1.1.11",
     "uppercamelcase": "^1.1.0",
     "url-loader": "^0.6.2",

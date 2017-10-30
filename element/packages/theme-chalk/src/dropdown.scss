@@ -1,6 +1,7 @@
 @import "mixins/mixins";
 @import "common/var";
 @import "button";
+@import "./popper";
 
 @include b(dropdown) {
   display: inline-block;
@@ -60,6 +61,7 @@
   margin: 5px 0;
   background-color: $--color-white;
   border: 1px solid $--border-color-lighter;
+  border-radius: $--border-radius-base;
   box-shadow: $--dropdown-menu-box-shadow;
 
   @include e(item) {

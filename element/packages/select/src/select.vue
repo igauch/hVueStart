@@ -26,7 +26,7 @@
       <input
         type="text"
         class="el-select__input"
-        :class="`is-${ size }`"
+        :class="`is-${ selectSize }`"
         @focus="visible = true"
         :disabled="disabled"
         @keyup="managePlaceholder"
@@ -49,7 +49,8 @@
       type="text"
       :placeholder="currentPlaceholder"
       :name="name"
-      :size="size"
+      :id="id"
+      :size="selectSize"
       :disabled="disabled"
       :readonly="!filterable || multiple"
       :validate-event="false"
@@ -113,24 +114,13 @@
   import { t } from 'element-ui/src/locale';
   import scrollIntoView from 'element-ui/src/utils/scroll-into-view';
   import { getValueByPath } from 'element-ui/src/utils/util';
+  import { valueEquals } from 'element-ui/src/utils/util';
   import NavigationMixin from './navigation-mixin';
 
   const sizeMap = {
     'medium': 36,
     'small': 32,
     'mini': 28
-  };
-
-  const valueEquals = (a, b) => {
-    // see: https://stackoverflow.com/questions/3115982/how-to-check-if-two-arrays-are-equal-with-javascript
-    if (a === b) return true;
-    if (!(a instanceof Array)) return false;
-    if (!(b instanceof Array)) return false;
-    if (a.length !== b.length) return false;
-    for (let i = 0; i !== a.length; ++i) {
-      if (a[i] !== b[i]) return false;
-    }
-    return true;
   };
 
   export default {
@@ -208,6 +198,7 @@
 
     props: {
       name: String,
+      id: String,
       value: {
         required: true
       },
@@ -547,9 +538,10 @@
           if (!this.$refs.reference) return;
           let inputChildNodes = this.$refs.reference.$el.childNodes;
           let input = [].filter.call(inputChildNodes, item => item.tagName === 'INPUT')[0];
-          input.style.height = this.selected.length === 0 && this.size === 'mini'
-            ? sizeMap[this.size]
-            : Math.max(this.$refs.tags.clientHeight + 10, sizeMap[this.size] || 40) + 'px';
+          const tags = this.$refs.tags;
+          input.style.height = this.selected.length === 0 && this.selectSize === 'mini'
+            ? sizeMap[this.selectSize]
+            : Math.max(tags ? (tags.clientHeight + 10) : 0, sizeMap[this.selectSize] || 40) + 'px';
           if (this.visible && this.emptyText !== false) {
             this.broadcast('ElSelectDropdown', 'updatePopper');
           }

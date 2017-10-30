@@ -15,6 +15,7 @@
       -webkit-appearance: none;
       padding-left: #{$--input-height + 10};
       padding-right: #{$--input-height + 10};
+      text-align: center;
     }
   }
 
@@ -123,14 +124,15 @@
 
   @include when(without-controls) {
     .el-input__inner {
+      padding-left: 15px;
       padding-right: 15px;
     }
   }
 
   @include when(controls-right) {
     .el-input__inner {
-        padding-left: 15px;
-        padding-right: #{$--input-height + 10};
+      padding-left: 15px;
+      padding-right: #{$--input-height + 10};
     }
 
     @include e((increase, decrease)) {
