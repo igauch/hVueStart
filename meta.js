@@ -28,6 +28,12 @@ module.exports = {
       "message": "端口号",
       "default": "8089"
     },
+    "prefix": {
+      "type": "string",
+      "required": false,
+      "message": "识别前缀",
+      "default": "h"
+    },
   },
   "skipInterpolation": "frameworks/**/*",
   complete(data) {

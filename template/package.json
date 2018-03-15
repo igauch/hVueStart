@@ -5,7 +5,7 @@
     "author": "{{ author }}",
     "private": true,
     "scripts": {
-      "bootstrap": "yarn || npm i",
+        "bootstrap": "yarn || npm i",
         "dev": "npm run bootstrap && node build/dev-server.js",
         "start": "node build/dev-server.js",
         "build": "node build/build.js",
@@ -20,7 +20,7 @@
         "vue-router": "^2.7.0",
         "jquery": "^3.2.1",
         "echarts": "^3.7.1",
-      "throttle-debounce": "^1.0.1"
+        "throttle-debounce": "^1.0.1"
     },
     "devDependencies": {
         "autoprefixer": "^7.1.2",

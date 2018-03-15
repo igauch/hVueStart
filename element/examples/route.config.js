@@ -18,22 +18,22 @@ const load = function(lang, path) {
   return LOAD_MAP[lang](path);
 };
 
-const LOAD_DOCS_MAP = {
-  'zh-CN': path => {
-    return r => require.ensure([], () =>
-      r(require(`./docs/zh-CN${path}.md`)),
-    'zh-CN');
-  },
-  'en-US': path => {
-    return r => require.ensure([], () =>
-      r(require(`./docs/en-US${path}.md`)),
-    'en-US');
-  }
-};
+// const LOAD_DOCS_MAP = {
+//   'zh-CN': path => {
+//     return r => require.ensure([], () =>
+//       r(require(`./docs/zh-CN${path}.md`)),
+//     'zh-CN');
+//   },
+//   'en-US': path => {
+//     return r => require.ensure([], () =>
+//       r(require(`./docs/en-US${path}.md`)),
+//     'en-US');
+//   }
+// };
 
-const loadDocs = function(lang, path) {
-  return LOAD_DOCS_MAP[lang](path);
-};
+// const loadDocs = function(lang, path) {
+//   return LOAD_DOCS_MAP[lang](path);
+// };
 
 const registerRoute = (navConfig) => {
   let route = [];
@@ -65,7 +65,11 @@ const registerRoute = (navConfig) => {
   function addRoute(page, lang, index) {
     const component = page.path === '/changelog'
       ? load(lang, 'changelog')
-      : loadDocs(lang, page.path);
+      : function(r) {
+        return require.ensure([], function() {
+          return r(require('./docs/zh-CN' + page.path + '.md'));
+        }, 'zh-CN');
+      };
     let child = {
       path: page.path.slice(1),
       meta: {
@@ -84,6 +88,7 @@ const registerRoute = (navConfig) => {
 };
 
 let route = registerRoute(navConfig);
+console.log(route);
 
 const generateMiscRoutes = function(lang) {
   let guideRoute = {

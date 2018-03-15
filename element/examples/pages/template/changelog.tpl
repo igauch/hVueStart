@@ -1,6 +1,6 @@
 <style>
   .page-changelog {
-    padding-bottom: 100px;
+    padding-bottom: 10px;
 
     .fr {
       float: right;

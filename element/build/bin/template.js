@@ -7,6 +7,7 @@ let watcher = chokidar.watch([templates]);
 watcher.on('ready', function() {
   watcher
     .on('change', function() {
+      console.log(123);
       exec('npm run i18n');
     });
 });
